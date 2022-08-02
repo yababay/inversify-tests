@@ -1,12 +1,20 @@
-import { militaryContainer } from "./japan/inversify.config";
+import { military as japan } from "./japan/inversify.config";
+import { military as roman } from "./roman/inversify.config";
+import { military as russian } from "./russian/inversify.config";
+
 import { TYPES } from "./types";
 import { Warrior } from "./interfaces";
 
-const ninja = militaryContainer.get<Warrior>(TYPES.Warrior);
+const fighter1 = japan.get<Warrior>(TYPES.Warrior);
+const fighter2 = roman.get<Warrior>(TYPES.Warrior);
+const fighter3 = russian.get<Warrior>(TYPES.Warrior);
 
-//expect(ninja.fight()).eql("cut!"); // true
-//expect(ninja.sneak()).eql("hit!"); // true
+console.log(fighter1.fight())
+console.log(fighter1.sneak())
 
-console.log(ninja.fight())
-console.log(ninja.sneak())
+console.log(fighter2.fight())
+console.log(fighter2.sneak())
+
+console.log(fighter3.fight())
+console.log(fighter3.sneak())
 

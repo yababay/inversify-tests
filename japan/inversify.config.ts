@@ -3,10 +3,10 @@ import { TYPES } from "../types";
 import { Warrior, Weapon, ThrowableWeapon } from "../interfaces";
 import { Ninja, Katana, Shuriken } from "./entities";
 
-const militaryContainer = new Container();
-militaryContainer.bind<Warrior>(TYPES.Warrior).to(Ninja);
-militaryContainer.bind<Weapon>(TYPES.Weapon).to(Katana);
-militaryContainer.bind<ThrowableWeapon>(TYPES.ThrowableWeapon).to(Shuriken);
+const military = new Container();
+military.bind<Warrior>(TYPES.Warrior).to(Ninja);
+military.bind<Weapon>(TYPES.Weapon).to(Katana);
+military.bind<ThrowableWeapon>(TYPES.ThrowableWeapon).to(Shuriken);
 
-export { militaryContainer };
+export { military };
 
