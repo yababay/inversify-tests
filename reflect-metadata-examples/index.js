@@ -5,105 +5,69 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
-const warrior_1 = require("./warrior");
-const warrior = new warrior_1.default("Илья Муромец", 33, "палица");
-console.log(warrior.about());
-warrior.name = "Алёша Попович";
-console.log(warrior.about());
-// Исследование свойств
-const props = [
-    "#name",
-    "#age",
-    "standartWeapon",
-    "#secretWeapon",
-    "secretWeapon",
-    "#isRenamed",
-    "age",
-    "name",
-    "power",
-    "about"
-];
-for (const prop of props.sort())
-    console.log(`У воина есть ${prop}? ${Reflect.has(warrior, prop)}`);
-console.log({
-    ownKeys: Reflect.ownKeys(warrior),
-    keys: Object.keys(warrior)
-});
-console.log({
-    ownKeys: Reflect.ownKeys(warrior),
-    keys: Object.keys(warrior)
-});
-console.log({
-    ownProperty: Reflect.getOwnPropertyDescriptor(warrior, "standartWeapon"),
-    objectProperty: Object.getOwnPropertyDescriptor(warrior, "standartWeapon")
-});
-console.log({
-    ownProperty: Reflect.getOwnPropertyDescriptor(warrior, "age"),
-    objectProperty: Object.getOwnPropertyDescriptor(warrior, "age")
-});
-console.log({
-    ownProperty: Reflect.getOwnPropertyDescriptor(warrior, "#age"),
-    objectProperty: Object.getOwnPropertyDescriptor(warrior, "#age")
-});
-console.log({
-    ownProperty: Reflect.getOwnPropertyDescriptor(warrior, "secretWeapon"),
-    objectProperty: Object.getOwnPropertyDescriptor(warrior, "secretWeapon")
-});
-console.log({
-    reflectPrototype: Reflect.getPrototypeOf(warrior),
-    objectPrototype: Object.getPrototypeOf(warrior),
-    prototype: warrior_1.default.prototype
-});
-console.log('Стандартное оружие: ', Reflect.get(warrior, 'standartWeapon'));
-warrior.standartWeapon = "кортик";
-console.log('Стандартное оружие: ', Reflect.get(warrior, 'standartWeapon'));
-// Управление свойствами (установка значения, удаление)
-Reflect.set(warrior, 'standartWeapon', "шпага");
-console.log('Стандартное оружие: ', Reflect.get(warrior, 'standartWeapon'));
-const result = Reflect.deleteProperty(warrior, 'standartWeapon');
-console.log(`Отобрать стандартное оружие${result ? ' ' : ' не '}удалось.`);
-// warrior.hiddenWeapon = "стилет"; // так нельзя
-// Управление метаданными.
-console.log({
-    ownMetadataKeys: Reflect.getOwnMetadataKeys(warrior),
-    metadataKeys: Reflect.getMetadataKeys(warrior)
-});
-Reflect.defineMetadata('О воине', 'Это русский богатырь.', warrior);
-console.log({
-    ownMetadataKeys: Reflect.getOwnMetadataKeys(warrior),
-    metadataKeys: Reflect.getMetadataKeys(warrior)
-});
-Reflect.defineMetadata('О стандартном оружии', 'Это оружие, которое есть у каждого воина.', warrior, 'standartWeapon');
-console.log({
-    propOwnMetadataKeys: Reflect.getOwnMetadataKeys(warrior, 'standartWeapon'),
-    propMetadataKeys: Reflect.getMetadataKeys(warrior, 'standartWeapon')
-});
-console.log({
-    hasMetadata: Reflect.hasMetadata('О воине', warrior),
-    hasOwnMetadata: Reflect.hasOwnMetadata('О воине', warrior),
-    propHasMetadata: Reflect.hasMetadata('О стандартном оружии', warrior, 'standartWeapon'),
-    propHasOwnMetadata: Reflect.hasOwnMetadata('О стандартном оружии', warrior, 'standartWeapon'),
-});
-console.log({
-    valueOfMetadata: Reflect.getMetadata('О воине', warrior),
-    valueOfhasOwnMetadata: Reflect.getOwnMetadata('О воине', warrior),
-    propValueOfMetadata: Reflect.getMetadata('О стандартном оружии', warrior, 'standartWeapon'),
-    propValueOfOwnMetadata: Reflect.getOwnMetadata('О стандартном оружии', warrior, 'standartWeapon'),
-});
-function funny(constructor) {
-    return class extends constructor {
-        constructor() {
-            super(...arguments);
-            this.standartWeapon = "пирожки с котятами";
-        }
+var decorators_1 = require("./decorators");
+var Warrior = /** @class */ (function () {
+    function Warrior(firstName, lastName) {
+        _Warrior_firstName.set(this, void 0);
+        _Warrior_lastName.set(this, void 0);
+        __classPrivateFieldSet(this, _Warrior_firstName, firstName, "f");
+        __classPrivateFieldSet(this, _Warrior_lastName, lastName, "f");
+    }
+    Warrior.prototype.setFirstName = function (name) {
+        __classPrivateFieldSet(this, _Warrior_firstName, name, "f");
     };
-}
-let FunnyWarrior = class FunnyWarrior extends warrior_1.default {
-};
-FunnyWarrior = __decorate([
-    funny
-], FunnyWarrior);
-const nikitich = new FunnyWarrior("Добрыня Никитич", 28, "винтовка Мосина");
-console.log(nikitich.about());
+    Warrior.prototype.setLastName = function (name) {
+        __classPrivateFieldSet(this, _Warrior_lastName, name, "f");
+    };
+    Warrior.prototype.about = function () {
+        return "".concat(__classPrivateFieldGet(this, _Warrior_firstName, "f"), " ").concat(__classPrivateFieldGet(this, _Warrior_lastName, "f"));
+    };
+    var _Warrior_firstName, _Warrior_lastName;
+    _Warrior_firstName = new WeakMap(), _Warrior_lastName = new WeakMap();
+    __decorate([
+        __param(0, decorators_1.logParameter),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String]),
+        __metadata("design:returntype", void 0)
+    ], Warrior.prototype, "setFirstName", null);
+    __decorate([
+        __param(0, decorators_1.logParameter),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String]),
+        __metadata("design:returntype", void 0)
+    ], Warrior.prototype, "setLastName", null);
+    __decorate([
+        decorators_1.logMethod,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", String)
+    ], Warrior.prototype, "about", null);
+    Warrior = __decorate([
+        __param(1, decorators_1.logParameter),
+        __metadata("design:paramtypes", [String, String])
+    ], Warrior);
+    return Warrior;
+}());
+var warrior = new Warrior('Алёша', 'Попович');
+warrior.setFirstName('Добрыня');
+warrior.setLastName('Никитич');
+warrior.about();
